@@ -68,31 +68,76 @@ public class Tree {
         }
     }
 
-//    public int average() {
-//        if (this.isEmpty()) {
-//            return 0;
-//        }
-//
-//
-//    }
-//
-//    private int[] averageHelper() {
-//        if (this.isEmpty()) {
-//            return new int[]{0, 0};
-//        }
-//
-//        int total = this.root;
-//        int size = 1;
-//        for (Tree t : this.subtrees) {
-//
-//        }
-//    }
+    public int average() {
+        if (this.isEmpty()) {
+            return 0;
+        }
+
+
+    }
+
+    private int[] averageHelper() {
+        if (this.isEmpty()) {
+            return new int[]{0, 0};
+        }
+
+        int total = this.root;
+        int size = 1;
+        for (Tree t : this.subtrees) {
+
+        }
+    }
 
     public boolean deleteItem(int item){
-//        if (is_empty()){
-//
-//        }
-
+        if (isEmpty()){
+            return false;
+        }
+        else if (root.equals(item)){
+            this.deleteRoot();
+            return true;
+        }
+        else {
+            for (Tree t : this.subtrees) {
+                boolean deleted = t.deleteItem(item);
+                if (deleted && t.isEmpty()) {
+                    this.subtrees.remove(t);
+                    return true;
+                }
+                else if (deleted) {
+                    return false;
+                }
+            }
+        }
         return false;
+    }
+    private void deleteRoot() {
+        if (subtrees.isEmpty()) {
+            this.root = null;
+        }
+        else {
+            Tree chosenSubtree = subtrees.remove(subtrees.size() - 1);
+
+            root = chosenSubtree.root;
+            subtrees.addAll(chosenSubtree.subtrees);
+        }
+    }
+    private int extractLeaf() {
+        if (subtrees.isEmpty()) {
+            int oldRoot = this.root;
+            this.root = null;
+            return oldRoot;
+        }
+        else {
+            int leaf = this.subtrees.get(0).extractLeaf();
+
+            if (this.subtrees.get(0).isEmpty()) {
+                this.subtrees.remove(0);
+
+                return leaf;
+            }
+        }
+    }
+    public void insert(int item) {
+
     }
 }
