@@ -87,4 +87,12 @@ public class Tree {
 //
 //        }
 //    }
+
+    public boolean deleteItem(int item){
+//        if (is_empty()){
+//
+//        }
+
+        return false;
+    }
 }
