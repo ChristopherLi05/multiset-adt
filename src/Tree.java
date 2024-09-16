@@ -68,23 +68,29 @@ public class Tree {
         }
     }
 
-//    public int average() {
-//        if (this.isEmpty()) {
-//            return 0;
-//        }
-//
-//
-//    }
-//
-//    private int[] averageHelper() {
-//        if (this.isEmpty()) {
-//            return new int[]{0, 0};
-//        }
-//
-//        int total = this.root;
-//        int size = 1;
-//        for (Tree t : this.subtrees) {
-//
-//        }
-//    }
+    public int average() {
+        if (this.isEmpty()) {
+            return 0;
+        }
+
+        int[] temp = this.averageHelper();
+        return temp[0] / temp[1];
+    }
+
+    private int[] averageHelper() {
+        if (this.isEmpty()) {
+            return new int[]{0, 0};
+        }
+
+        int total = this.root;
+        int size = 1;
+        for (Tree t : this.subtrees) {
+            int[] temp = t.averageHelper();
+
+            total += temp[0];
+            size += temp[1];
+        }
+
+        return new int[]{total, size};
+    }
 }
