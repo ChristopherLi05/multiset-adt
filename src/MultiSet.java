@@ -14,7 +14,7 @@ public abstract class MultiSet {
 
     abstract boolean contains(Integer item);
 
-    abstract boolean is_empty();
+    abstract boolean isEmpty();
 
     abstract int count(Integer item);
 
